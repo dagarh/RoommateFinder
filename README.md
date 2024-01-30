@@ -37,8 +37,9 @@ Status meetings are meetings where the project manager and/or project leader rep
 Look forward for the next 10 to 13 weeks and plan out a set of target milestones (estimated) that the team expects to meet over the duration of the project, culminating in the final presentation at the end of the semester.
 
 ## Risks
-Describe any risks that you see for this project, and how they will be track and monitored.
+Potential issues with integration of location data or verification process. Regular testing and collaboration will mitigate this risk.
+
 
 ## Assumptions
-State any assumptions you have about this project.
-
+Users have smartphones with internet connectivity.
+The team will have access to necessary development tools and environments.
