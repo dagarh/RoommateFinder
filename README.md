@@ -22,7 +22,7 @@ The roles vary for each type of product and, for small project teams, folks will
 ## Communications Plan
 
 ### Working team meetings
-These meetings form the core of the team’s collaboration and can be used for brainstorming, pair-programming, debugging, prototyping, internal reviews of each other’s work, etc.  Except for the weekly status meetings, these are done without the manager’s (the instructor) involvement.   Often it can be done by the team during the time of the scheduled class while other teams are having status meetings, but this may not be convenient if the team is a hybrid mix where some members are on campus while others are remote.   
+These meetings form the core of the team’s collaboration and can be used for brainstorming, pair-programming, debugging, prototyping, internal reviews of each other’s work, etc.  Except for the weekly status meetings, these are done without the manager’s (the instructor) involvement.   Often it can be done by the team during the time of the scheduled class while other teams are having status meetings, but this may not be convenient if the team is a hybrid mix where some members are on campus while others are remote.
 
 Whether you have your working meetings during class time or not, each team should also agree upon some recurring time(s) when to meet to work as a group in case it is needed.   State here what has been agreed upon for the working team meetings.
 
@@ -39,7 +39,6 @@ Look forward for the next 10 to 13 weeks and plan out a set of target milestones
 ## Risks
 Describe any risks that you see for this project, and how they will be track and monitored.
 
-## Assumptions 
+## Assumptions
 State any assumptions you have about this project.
-
 
