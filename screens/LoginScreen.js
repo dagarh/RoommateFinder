@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet, Alert,Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { themeColors } from '../theme';
 import AuthContent from '../components/Auth/AuthContent';
@@ -48,41 +48,60 @@ function LoginScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image source={require('../assets/images/login.jpeg')} style={styles.image} />
-      </View>
-      <View style={styles.formContainer}>
-        <Text style={styles.screenTitle}>Login</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Phone number, Username or Email Address"
-          value={email}
-          onChangeText={setEmail}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          secureTextEntry
-          value={password}
-          onChangeText={setPassword}
-        />
-        <TouchableOpacity style={styles.loginButton} onPress={loginHandler}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <Text style={styles.orText}>or</Text>
-      </View>
-      <View style={styles.socialLoginContainer}>
-        <TouchableOpacity style={styles.socialLoginButton} onPress={handleGoogleLogin}>
+
+      <Image source={require('../assets/images/logo4.jpeg')} style={styles.logo} />
+
+      <Text style={styles.title}>Sign in</Text>
+      <TextInput
+        placeholder="Email or Phone"
+        value={email}
+        onChangeText={setEmail}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Password"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+        style={styles.input}
+      />
+
+      <TouchableOpacity style={styles.Forgotpass}>
+        <Text style={styles.Forgotpasstext}>Forgot Password?</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.signinbutton} onPress={loginHandler} >
+        <Text style={styles.signinbuttontext}>Sign in</Text>
+      </TouchableOpacity>
+
+
+      <Text style={styles.orText}>or</Text>
+
+
+      <TouchableOpacity style={styles.button} onPress={handleGoogleLogin}>
+        <View style={styles.buttonContent}>
           <Image source={require('../assets/icons/google.png')} style={styles.socialIcon} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.socialLoginButton} onPress={handleAppleLogin}>
+          <Text style={styles.buttonText}>Sign in with Google</Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={handleAppleLogin}>
+        <View style={styles.buttonContent}>
           <Image source={require('../assets/icons/apple.png')} style={styles.socialIcon} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.socialLoginButton} onPress={handleFacebookLogin}>
+          <Text style={styles.buttonText}>Sign in with Apple</Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={handleFacebookLogin}>
+        <View style={styles.buttonContent}>
           <Image source={require('../assets/icons/facebook.png')} style={styles.socialIcon} />
-        </TouchableOpacity>
-      </View>
-      <Image source={require('../assets/images/logo2.webp')} style={styles.logo} />
+          <Text style={styles.buttonText}>Sign in with Facebook</Text>
+        </View>
+      </TouchableOpacity>
+
+
+
+      
       <View style={styles.bottomContainer}>
         <View style={styles.switchContainer}>
           <Text style={styles.switchText}>Don't have an account?</Text>
@@ -99,67 +118,81 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+    justifyContent:'center',
+    padding:25
   },
-  imageContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 40,
-  },
-  image: {
-    width: 200,
-    height: 200,
-    borderRadius:100
-  },
-  formContainer: {
-    paddingHorizontal: 20,
-    marginTop: 30,
-  },
-  screenTitle: {
-    fontSize: 24,
+
+  title:{
+    fontSize:35,
+    marginBottom:20,
     fontWeight: 'bold',
-    marginBottom: 20,
-    color: themeColors.primary,
   },
+
   input: {
-    backgroundColor: themeColors.inputBg,
-    borderRadius: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    marginBottom: 15,
+    height: 50,
+    marginBottom: 10,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius:6
   },
-  loginButton: {
-    backgroundColor: themeColors.primary,
-    borderRadius: 10,
-    paddingVertical: 15,
+
+
+  Forgotpass:{
+    marginBottom:10,
+    marginTop:10,
+  },
+  Forgotpasstext:{
+    color:'lightblue'
+  },
+
+
+  signinbutton: {
     alignItems: 'center',
-    marginBottom: 10,
+    justifyContent: 'center',
+    backgroundColor: 'lightblue',
+    padding: 10,
+    marginTop: 10,
+    borderRadius: 25,
+    height: 50,
+    },
+  signinbuttontext:{
+    fontWeight:'bold',
+    fontSize:18
   },
-  buttonText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: themeColors.buttonText,
-  },
-  orText: {
+
+  orText:{
     textAlign: 'center',
-    marginBottom: 10,
+    marginTop:30,
+    marginBottom: 30,
     fontWeight: 'bold',
   },
-  socialLoginContainer: {
+
+
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+    marginTop: 10,
+    borderRadius: 25,
+    height: 50,
+    },
+  buttonContent: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 50, // Adjusted padding
-    marginBottom: 20,
-  },
-  socialLoginButton: {
-    backgroundColor: 'lightgrey',
-    borderRadius: 16, // Make it circular
-    padding: 8,
-    marginHorizontal: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   socialIcon: {
-    width: 30,
-    height: 30,
+    width: 20,
+    height: 20,
+    marginRight: 10,
   },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+
+
   bottomContainer: {
     flex: 1,
     justifyContent: 'flex-end',
@@ -178,13 +211,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: themeColors.primary,
   },
+
+
   logo: {
-    width: 40,
+    width:130,
     height: 40,
-    borderRadius:20,
-    alignSelf: 'center',
-    marginBottom: 10,
-    marginTop:20
+    alignSelf: 'flex-start',
+    marginBottom: 30,
   },
 });
 
