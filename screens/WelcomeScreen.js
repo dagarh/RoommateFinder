@@ -2,10 +2,10 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-export default function W() {
+export default function Home() {
   return (
     <SafeAreaView>
-      <Text>Home Screen</Text>
+      <Text>Home</Text>
     </SafeAreaView>
   )
 }

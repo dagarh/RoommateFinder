@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
   Forgotpass:{
     marginBottom:10,
     marginTop:10,
+    alignSelf:'flex-end'
   },
   Forgotpasstext:{
     color:'lightblue'
@@ -166,25 +167,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     fontWeight: 'bold',
   },
-
-  // orTextContainer: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  //   marginVertical: 20,
-  // },
-  // orLine: {
-  //   flex: 1,
-  //   height: 1,
-  //   backgroundColor: 'black',
-  //   marginHorizontal: 10,
-  // },
-  // orText: {
-  //   fontWeight: 'bold',
-  //   fontSize: 16,
-  //   color: 'black',
-  // },
-
 
   button: {
     alignItems: 'center',
