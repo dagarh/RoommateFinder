@@ -10,11 +10,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
+import NotificationsScreen from './screens/NotificationsScreen';
+import SettingsScreen from './screens/SettingsScreen';
 import { Colors } from './constants/styles';
 import AuthContextProvider, { AuthContext } from './store/auth-context';
 import IconButton from './components/ui/IconButton';
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function AuthStack() {
   return (
@@ -30,40 +33,30 @@ function AuthStack() {
   );
 }
 
+function MainTabNavigator() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={WelcomeScreen} />
+      <Tab.Screen name="Notifications" component={NotificationsScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
+  );
+}
+
 function AuthenticatedStack() {
   const authCtx = useContext(AuthContext);
   const navigation = useNavigation();
-  
+
   return (
     <Stack.Navigator
-      initialRouteName='Welcome'
+      initialRouteName='Main'
       screenOptions={{
-        headerShown: true,
+        headerShown: false, // Optional: Hide header for tabs
       }}
     >
       <Stack.Screen
-        name="Welcome"
-        component={WelcomeScreen}
-        options={{
-          headerLeft: ({ tintColor }) => (
-            <View style={{ flexDirection: 'row' }}>
-              <IconButton
-                icon="person"
-                color={tintColor}
-                size={24}
-                // onPress={() => navigation.navigate('Profile')}
-              />
-            </View>
-          ),
-          headerRight: ({ tintColor }) => (
-            <IconButton
-              icon="exit"
-              color={tintColor}
-              size={24}
-              onPress={authCtx.logout}
-            />
-          ),
-        }}
+        name="Main"
+        component={MainTabNavigator}
       />
     </Stack.Navigator>
   );
@@ -105,7 +98,7 @@ function Root() {
 export default function App() {
   return (
     <>
-      <StatusBar style="light" />
+      <StatusBar style="auto" />
       <AuthContextProvider>
         <Root />
       </AuthContextProvider>

@@ -43,32 +43,42 @@ function SignUpScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image source={require('../assets/images/signup.webp')} style={styles.image} />
-      </View>
-      <View style={styles.formContainer}>
+
+        <Image source={require('../assets/images/logo4.jpeg')} style={styles.logo} />
+
         <Text style={styles.screenTitle}>Sign Up</Text>
         <TextInput style={styles.input} placeholder="Username" />
         <TextInput style={styles.input} placeholder="Email Address" />
-        <TextInput style={styles.input} placeholder="Phone number" />
         <TextInput style={styles.input} placeholder="Password" secureTextEntry />
         <TouchableOpacity style={styles.actionButton} onPress={signupHandler}>
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
         <Text style={styles.orText}>or</Text>
-      </View>
-      <View style={styles.socialLoginContainer}>
-        <TouchableOpacity style={styles.socialLoginButton} onPress={handleGoogleSignUp}>
+
+
+
+      <TouchableOpacity style={styles.button} onPress={handleGoogleSignUp}>
+        <View style={styles.buttonContent}>
           <Image source={require('../assets/icons/google.png')} style={styles.socialIcon} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.socialLoginButton} onPress={handleAppleSignUp}>
+          <Text style={styles.buttonText}>Sign up with Google</Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={handleAppleSignUp}>
+        <View style={styles.buttonContent}>
           <Image source={require('../assets/icons/apple.png')} style={styles.socialIcon} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.socialLoginButton} onPress={handleFacebookSignUp}>
+          <Text style={styles.buttonText}>Sign up with Apple</Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={handleFacebookSignUp}>
+        <View style={styles.buttonContent}>
           <Image source={require('../assets/icons/facebook.png')} style={styles.socialIcon} />
-        </TouchableOpacity>
-      </View>
-      <Image source={require('../assets/images/logo2.webp')} style={styles.logo} />
+          <Text style={styles.buttonText}>Sign up with Facebook</Text>
+        </View>
+      </TouchableOpacity>
+
+
 
       <View style={styles.bottomContainer}>
         <View style={styles.switchContainer}>
@@ -78,6 +88,7 @@ function SignUpScreen() {
           </TouchableOpacity>
         </View>
       </View>
+
     </View>
   );
 }
@@ -86,66 +97,84 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+    padding:25
   },
-  imageContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 50,
+  
+  logo: {
+    width:130,
+    height: 40,
+    alignSelf: 'flex-start',
+    marginBottom: 30,
   },
-  image: {
-    width: 200,
-    height: 200,
-    borderRadius:100,
-  },
-  formContainer: {
-    paddingHorizontal: 20,
-    marginTop: 30,
-  },
+
   screenTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
     color: themeColors.primary,
   },
+
+
   input: {
-    backgroundColor: themeColors.inputBg,
-    borderRadius: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    marginBottom: 15,
+    height: 50,
+    marginBottom: 10,
+    borderWidth: 1,
+    padding: 5,
+    borderRadius:6
   },
+
+
   actionButton: {
-    backgroundColor: themeColors.primary,
-    borderRadius: 10,
-    paddingVertical: 15,
     alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'lightblue',
+    padding: 10,
+    marginTop: 10,
+    borderRadius: 25,
+    height: 50,
   },
   buttonText: {
     fontSize: 18,
     fontWeight: 'bold',
     color: themeColors.buttonText,
   },
+
+
   orText: {
     textAlign: 'center',
-    marginBottom: 10,
+    marginTop:20,
+    marginBottom: 20,
     fontWeight: 'bold',
   },
-  socialLoginContainer: {
+
+
+
+  
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+    marginTop: 10,
+    borderRadius: 25,
+    height: 50,
+    },
+  buttonContent: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 50, // Adjusted padding
-    marginBottom: 20,
-  },
-  socialLoginButton: {
-    backgroundColor: 'lightgrey',
-    borderRadius: 16, // Make it circular
-    padding: 8,
-    marginHorizontal: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   socialIcon: {
-    width: 30,
-    height: 30,
+    width: 20,
+    height: 20,
+    marginRight: 10,
   },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+
+
   bottomContainer: {
     flex: 1,
     justifyContent: 'flex-end',
@@ -163,14 +192,6 @@ const styles = StyleSheet.create({
   switchButtonText: {
     fontWeight: 'bold',
     color: themeColors.primary,
-  },
-  logo: {
-    width: 40,
-    height: 40,
-    borderRadius:20,
-    alignSelf: 'center',
-    marginBottom: 1,
-    marginTop:20
   },
 });
 
