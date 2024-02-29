@@ -16,6 +16,11 @@ function LoginScreen() {
   const navigation = useNavigation(); 
 
   async function loginHandler() {
+    if (!email || !password) {
+      Alert.alert('Error', 'Please enter both email and password');
+      return;
+    }
+
     setIsAuthenticating(true);
     try {
       const token = await login(email, password);
