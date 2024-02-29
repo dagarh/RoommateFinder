@@ -32,9 +32,11 @@ function SignUpScreen() {
         'Authentication failed',
         'Could not create user, please check your input and try again later.'
       );
-      setIsAuthenticating(true);
+    } finally {
+      setIsAuthenticating(false);
     }
   }
+  
 
   if (isAuthenticating) {
     return <LoadingOverlay message="Creating user..." />;
@@ -329,6 +331,7 @@ const styles = StyleSheet.create({
   bottomContainer: {
     flex: 1,
     justifyContent: 'flex-end',
+    marginTop:35
   },
   switchContainer: {
     flexDirection: 'row',
