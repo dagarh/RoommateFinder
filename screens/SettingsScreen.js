@@ -1,4 +1,3 @@
-// screens/SettingsScreen.js
 
 import React, { useContext } from 'react';
 import { View, Text, Button } from 'react-native';

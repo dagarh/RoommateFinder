@@ -1,11 +1,13 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import MyText from '../components/MyText'
 
-export default function Home() {
+const Chats = () => {
   return (
     <SafeAreaView>
-      <Text>Home</Text>
+      <MyText type='title'>Chats</MyText>
     </SafeAreaView>
-  )
-}
+  );
+};
+
+export default Chats;

@@ -9,9 +9,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
-import WelcomeScreen from './screens/WelcomeScreen';
+import Home from './screens/Home';
 import NotificationsScreen from './screens/NotificationsScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import Chats from './screens/Chats';
+import Onboarding from './screens/Onboarding';
 import { Colors } from './constants/styles';
 import AuthContextProvider, { AuthContext } from './store/auth-context';
 import IconButton from './components/ui/IconButton';
@@ -35,29 +37,109 @@ function AuthStack() {
 
 function MainTabNavigator() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={WelcomeScreen} />
-      <Tab.Screen name="Notifications" component={NotificationsScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
-    </Tab.Navigator>
+    <BottomNavigation/>
   );
 }
 
+function BottomNavigation(){
+  return(
+    <Tab.Navigator initialRouteName='Home'
+    screenOptions={{
+      headerShown: true,
+    }}
+    >
+      <Tab.Screen
+      options={{
+        tabBarIcon : ({color}) =>(
+          <TabBarIcon name="home" color={color}/>
+        ),
+          headerShown:false,
+          tabBarLabel:'Home'
+      }}
+       name="HomeStack" component={HomeStack} />
+       <Tab.Screen
+       options={{
+        tabBarIcon : ({color}) =>(
+          <TabBarIcon name="people" color={color}/>
+        ),
+          headerShown:false,
+          tabBarLabel:'Chats'
+      }}
+        name='Chats' component={Chats}/>
+      <Tab.Screen
+      options={{
+        tabBarIcon : ({color}) =>(
+          <TabBarIcon name="notifications" color={color}/>
+        ),
+          headerShown:false,
+          tabBarLabel:'Notifications'
+      }}
+      name="Notifications" component={NotificationsScreen} />
+      <Tab.Screen
+      options={{
+        tabBarIcon : ({color}) =>(
+          <TabBarIcon name="settings" color={color}/>
+        ),
+          headerShown:false,
+          tabBarLabel:'Settings'
+      }} name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
+  )
+}
+
+
+function HomeStack(){
+  return(
+    <Stack.Navigator initialRouteName='Home'
+    screenOptions={{
+      headerShown: true,
+    }}
+    >
+      <Stack.Screen name='Home' component={Home}/>
+      <Stack.Screen name='Onboarding' component={Onboarding}
+      options={{
+        headerShown:false,
+        presentation:'modal'
+      }}
+      />
+    </Stack.Navigator>
+  )
+}
+
+
+function TabBarIcon(props) {
+  return <Ionicons size={28} style={{ marginBottom: -3 }} {...props} />;
+}
+  
+
 function AuthenticatedStack() {
+  const [showOnboarding, setShowOnboarding] = useState(true);
   const authCtx = useContext(AuthContext);
-  const navigation = useNavigation();
+  const navigation= useNavigation();
+
+  useEffect(() => {
+    async function fetchOnboardingStatus() {
+      const onboardingStatus = await AsyncStorage.getItem('hasShownOnboarding');
+      setShowOnboarding(onboardingStatus !== 'true');
+    }
+
+    fetchOnboardingStatus();
+  }, []);
+
+  useEffect(() => {
+    async function saveOnboardingStatus() {
+      if (!showOnboarding) {
+        await AsyncStorage.setItem('hasShownOnboarding', 'true');
+      }
+    }
+
+    saveOnboardingStatus();
+  }, [showOnboarding]);
 
   return (
-    <Stack.Navigator
-      initialRouteName='Main'
-      screenOptions={{
-        headerShown: false, // Optional: Hide header for tabs
-      }}
-    >
-      <Stack.Screen
-        name="Main"
-        component={MainTabNavigator}
-      />
+    <Stack.Navigator initialRouteName={showOnboarding ? 'Onboarding' : 'Main'} screenOptions={{ headerShown: false }}>
+      {showOnboarding && <Stack.Screen name="Onboarding" component={Onboarding} />}
+      <Stack.Screen name="Main" component={MainTabNavigator} />
     </Stack.Navigator>
   );
 }
