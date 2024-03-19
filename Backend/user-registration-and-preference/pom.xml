@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ssw695.app</groupId>
-	<artifactId>roommate-finder-auth</artifactId>
+	<artifactId>user-registration-and-preferences</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>roommate-finder-auth</name>
 	<description>SSW 695 Capstone Project</description>
