@@ -45,7 +45,7 @@ function BottomNavigation(){
   return(
     <Tab.Navigator initialRouteName='Home'
     screenOptions={{
-      headerShown: true,
+      headerShown: false,
     }}
     >
       <Tab.Screen
@@ -92,7 +92,7 @@ function HomeStack(){
   return(
     <Stack.Navigator initialRouteName='Home'
     screenOptions={{
-      headerShown: true,
+      headerShown: false,
     }}
     >
       <Stack.Screen name='Home' component={Home}/>
