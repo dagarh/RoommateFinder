@@ -27,6 +27,11 @@ function SignUpScreen() {
     try {
       const token = await createUser(email, password);
       authCtx.authenticate(token);
+      await postUserPreferences(email, {
+        eatingHabit, socialHabit, smokingAndDrinking, petOwnership,
+        accommodationType, locationPreference, rentBudget,
+        leaseLength, desiredAttributes, genderPreference,
+      });
     } catch (error) {
       Alert.alert(
         'Authentication failed',
@@ -37,6 +42,30 @@ function SignUpScreen() {
     }
   }
   
+  async function postUserPreferences(email, preferences) {
+    const url = `https://3584-100-8-18-81.ngrok-free.app/user-registration-and-preferences/api/v1/preference/users/${email}`;
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(preferences)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Failed to post user preferences:", errorData);
+        Alert.alert("Error", "Failed to save user preferences. Please try again later.");
+      } else {
+        console.log("User preferences saved successfully!");
+      }
+    } catch (error) {
+      console.error("Error posting user preferences:", error);
+      Alert.alert("Error", "An error occurred while saving user preferences. Please check your network connection and try again.");
+    }
+  }
 
   if (isAuthenticating) {
     return <LoadingOverlay message="Creating user..." />;
