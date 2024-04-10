@@ -10,7 +10,6 @@ import { getFirestore } from "firebase/firestore";
 //   messagingSenderId: "797925756036",
 //   appId: "1:797925756036:web:03c5b6d57c09f1c1af06d1",
 // };
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDLHroMkvDFuTYpZeEl_fWbnYbA8YvxmEU",
   authDomain: "roommate-b495b.firebaseapp.com",
@@ -24,3 +23,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
 export const db = getFirestore(app);
+export const auth = getAuth();
+
