@@ -150,7 +150,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserPreferenceResponse fetchPreferenceData(String emailId, List<ErrorDTO> errorList) {
-		return null;
+		
+		UserPreference preferenceData = userPreferenceRepository.findByEmailId(emailId).get();
+		
+		UserPreferenceResponse preferenceResponse = new UserPreferenceResponse();
+		preferenceResponse.setEmailId(emailId);
+		preferenceResponse.setEatingHabit(preferenceData.getEatingHabit());
+		preferenceResponse.setSocialHabit(preferenceData.getSocialHabit());
+		preferenceResponse.setSmokingDrinking(preferenceData.getSmokingDrinking());
+		preferenceResponse.setPetOwnership(preferenceData.getPetOwnership());
+		preferenceResponse.setAccommodationType(preferenceData.getAccommodationType());
+		preferenceResponse.setLocation(preferenceData.getLocation());
+		preferenceResponse.setRentBudget(preferenceData.getRentBudget());
+		preferenceResponse.setLeaseTerm(preferenceData.getLeaseTerm());
+		preferenceResponse.setDesiredAttrInRoommate(preferenceData.getDesiredAttrInRoommate());
+		preferenceResponse.setGender(preferenceData.getGender());
+		
+		return preferenceResponse;
 	}
 	
 	
