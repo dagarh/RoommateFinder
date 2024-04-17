@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ssw695.app.userregistrationandpreferences.contract.request.UserPreferenceRequest;
 import com.ssw695.app.userregistrationandpreferences.contract.request.UserProfileRequest;
+import com.ssw695.app.userregistrationandpreferences.contract.response.UserPreferenceResponse;
+import com.ssw695.app.userregistrationandpreferences.contract.response.UserProfileResponse;
 import com.ssw695.app.userregistrationandpreferences.contract.response.base.ErrorDTO;
 import com.ssw695.app.userregistrationandpreferences.entity.UserPreference;
 import com.ssw695.app.userregistrationandpreferences.entity.UserProfile;
@@ -130,4 +132,42 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	    userPreferenceRepository.flush();
 		entityManager.clear();
 	}
+
+	@Override
+	public UserProfileResponse fetchProfileData(String emailId, List<ErrorDTO> errorList) {
+		
+		UserProfile profileData = userProfileRepository.findByEmailId(emailId).get();
+		
+		UserProfileResponse profileResponse = new UserProfileResponse();
+		profileResponse.setEmailId(emailId);
+		profileResponse.setName(profileData.getName());
+		profileResponse.setAge(profileData.getAge());
+		profileResponse.setGender(profileData.getGender());
+		profileResponse.setOccupation(profileData.getOccupation());
+		
+		return profileResponse;
+	}
+
+	@Override
+	public UserPreferenceResponse fetchPreferenceData(String emailId, List<ErrorDTO> errorList) {
+		
+		UserPreference preferenceData = userPreferenceRepository.findByEmailId(emailId).get();
+		
+		UserPreferenceResponse preferenceResponse = new UserPreferenceResponse();
+		preferenceResponse.setEmailId(emailId);
+		preferenceResponse.setEatingHabit(preferenceData.getEatingHabit());
+		preferenceResponse.setSocialHabit(preferenceData.getSocialHabit());
+		preferenceResponse.setSmokingDrinking(preferenceData.getSmokingDrinking());
+		preferenceResponse.setPetOwnership(preferenceData.getPetOwnership());
+		preferenceResponse.setAccommodationType(preferenceData.getAccommodationType());
+		preferenceResponse.setLocation(preferenceData.getLocation());
+		preferenceResponse.setRentBudget(preferenceData.getRentBudget());
+		preferenceResponse.setLeaseTerm(preferenceData.getLeaseTerm());
+		preferenceResponse.setDesiredAttrInRoommate(preferenceData.getDesiredAttrInRoommate());
+		preferenceResponse.setGender(preferenceData.getGender());
+		
+		return preferenceResponse;
+	}
+	
+	
 }
