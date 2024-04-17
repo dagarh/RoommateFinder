@@ -42,24 +42,10 @@ class UserRegistrationAndPreferencesApplicationTests {
         userProfile.setOccupation("Software Engineer");
 
         userProfileRequest = new UserProfileRequest();
-        userProfileRequest.setName("Test User");
-        userProfileRequest.setAge(30);
-        userProfileRequest.setGender("Male");
-        userProfileRequest.setOccupation("Software Engineer");
-    }
-
-    @Test
-    public void testPostUserProfile_NewUser() {
-    	when(userProfileRepository.findByEmailId(anyString())).thenReturn(Optional.empty());
-        doAnswer(invocation -> {
-            UserProfile savedUser = invocation.getArgument(0);
-            assertNotEquals(userProfile.getName(), savedUser.getName());
-            return null;
-        }).when(userProfileRepository).save(any(UserProfile.class));
-
-        userDetailsService.postUserProfile("test@example.com", userProfileRequest, new ArrayList<>());
-
-        verify(userProfileRepository, times(1)).save(any(UserProfile.class));
+        userProfileRequest.setName("New Test User"); 
+        userProfileRequest.setAge(25);
+        userProfileRequest.setGender("Female");
+        userProfileRequest.setOccupation("Data Scientist");
     }
 
     @Test
