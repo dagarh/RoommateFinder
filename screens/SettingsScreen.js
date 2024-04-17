@@ -1,10 +1,21 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import React, { useContext } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { AuthContext } from '../store/auth-context'; // Import the AuthContext
 
 function SettingsScreen({ navigation }) {
+  const authCtx = useContext(AuthContext); // Use the AuthContext
+
   const navigateToScreen = (screenName) => {
     navigation.navigate(screenName, {userId: 1});
+  };
+
+  const handleLogout = () => {
+    authCtx.logout(); // Call the logout method from AuthContext
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Login' }],
+    });
   };
 
   return (
@@ -33,23 +44,20 @@ function SettingsScreen({ navigation }) {
         <Ionicons name="arrow-forward" size={22} color="black" />
       </TouchableOpacity>
 
-      
+      <TouchableOpacity style={styles.box} onPress={() => navigateToScreen('ChangePassword')}>
+        <Text style={styles.Set}>Change Password</Text>
+        <Ionicons name="arrow-forward" size={22} color="black" />
+      </TouchableOpacity>
 
-          <TouchableOpacity style={styles.box} onPress={() => navigateToScreen('ChangePassword')}>
-              <Text style={styles.Set}>Change Password</Text>
-              <Ionicons name="arrow-forward" size={22} color="black" />
-          </TouchableOpacity>
-
-          <TouchableOpacity
+      <TouchableOpacity
         style={styles.box}
-        onPress={() => navigateToScreen("Comments")}
+        onPress={handleLogout}
       >
         <Text style={styles.Set}>Log Out</Text>
         <Ionicons name="arrow-forward" size={22} color="black" />
       </TouchableOpacity>
-          
-          <View style={styles.footer}>
-       
+
+      <View style={styles.footer}>
         <Text style={styles.footerText}>Room Mate Finder</Text>
       </View>
     </View>
