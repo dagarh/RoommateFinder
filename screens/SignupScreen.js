@@ -9,6 +9,9 @@ import RNPickerSelect from 'react-native-picker-select';
 
 function SignUpScreen() {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigation = useNavigation();
   const authCtx = useContext(AuthContext);
   const [eatingHabit, setEatingHabit] = useState('');
@@ -22,11 +25,12 @@ function SignUpScreen() {
   const [desiredAttributes, setDesiredAttributes] = useState('');
   const [genderPreference, setGenderPreference] = useState('');
 
-  async function signupHandler({ email, password }) {
+  async function signupHandler() {
     setIsAuthenticating(true);
     try {
       const token = await createUser(email, password);
       authCtx.authenticate(token);
+      await postUserProfile(email, username);
       await postUserPreferences(email, {
         eatingHabit, socialHabit, smokingAndDrinking, petOwnership,
         accommodationType, locationPreference, rentBudget,
@@ -39,6 +43,21 @@ function SignUpScreen() {
       );
     } finally {
       setIsAuthenticating(false);
+    }
+  }
+
+  async function postUserProfile(email, name) {
+    const url = `https://3584-100-8-18-81.ngrok-free.app/user-registration-and-preferences/api/v1/profile/users/${email}`;
+    try {
+      await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name }) 
+      });
+      console.log("User profile created successfully");
+    } catch (error) {
+      console.error("Error posting user profile:", error);
+      Alert.alert("Error", "An error occurred while creating user profile. Please try again.");
     }
   }
   
@@ -90,9 +109,25 @@ function SignUpScreen() {
         <Image source={require('../assets/images/logo4.jpeg')} style={styles.logo} />
 
         <Text style={styles.screenTitle}>Sign Up</Text>
-        <TextInput style={styles.input} placeholder="Username" />
-        <TextInput style={styles.input} placeholder="Email Address" />
-        <TextInput style={styles.input} placeholder="Password" secureTextEntry />
+        <TextInput
+          style={styles.input}
+          placeholder="Username"
+          onChangeText={setUsername} // Updates the username state
+          value={username}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Email Address"
+          onChangeText={setEmail} // Updates the email state
+          value={email}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          secureTextEntry
+          onChangeText={setPassword} // Updates the password state
+          value={password}
+        />
         <Text style={styles.screenTitle}>User Preferences</Text>
         <RNPickerSelect
   onValueChange={(value) => setEatingHabit(value)}
