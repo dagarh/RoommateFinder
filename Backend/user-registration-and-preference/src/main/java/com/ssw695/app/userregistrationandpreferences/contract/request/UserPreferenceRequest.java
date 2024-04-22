@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserPreferenceRequest {
 	
+	private String accommodationType;
+	
 	private String eatingHabit;
 
 	private String socialHabit;
@@ -15,8 +17,6 @@ public class UserPreferenceRequest {
 	private String smokingDrinking;
 	
 	private String petOwnership;
-	
-	private String accommodationType;
 	
 	private String location;
 	
