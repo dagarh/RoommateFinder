@@ -22,8 +22,8 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: scrum-rangers
-          MYSQL_DATABASE: authdb
+          MYSQL_ROOT_PASSWORD: CapstoneSSW695
+          MYSQL_DATABASE: initial_db
         ports:
           - 3307:3306
         options: >-
