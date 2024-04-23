@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, StyleSheet, Button, Modal, TextInput, TouchableOpacity, Alert } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 
 export default function Home() {
@@ -53,6 +53,54 @@ export default function Home() {
     { id: 11, title: "Artistic Flat in Harlem", latitude: 40.811550, longitude: -73.946477, description: "Creative space ideal for artists.", imageUrl: 'https://example.com/room11.jpg', owner: "Franklin Armstrong", contact: "franklin@example.com" },
     
   ];
+  
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [newListing, setNewListing] = useState({
+    title: '',
+    description: '',
+    imageUrl: '',
+    owner: '',
+    contact: '',
+    rent: '',
+    CleanlinessHabits: '',
+    NoiseTolerance: '',
+    SocialPrefernces: '',
+    DailyRoutines: '',
+    DescriptionofCurrentOccupants: '',
+  });
+
+  const handleAddListing = async () => {
+    try {
+      const response = await fetch('https://d81e-108-5-218-27.ngrok-free.app/roommateFinder/feeds/viewAllfeeds', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userId: newListing.contact,
+          rent: newListing.rent,
+          cleanlinessHabits: newListing.CleanlinessHabits,
+          noisetolerance: newListing.NoiseTolerance,
+          socialPreferences: newListing.SocialPrefernces,
+          sleepingSchedules: newListing.DailyRoutines,
+          location: newListing.description,
+          descriptionOfCurrentOccupants: newListing.DescriptionofCurrentOccupants,
+          dailyRoutines: newListing.DailyRoutines
+        })
+      });
+      const result = await response.json();
+      if (response.ok) {
+        Alert.alert("Success", "Listing added successfully!");
+        setModalVisible(false);
+      } else {
+        Alert.alert("Error", result.message || "An error occurred");
+      }
+    } catch (error) {
+      Alert.alert("Error", "Failed to add listing. Please try again later.");
+      console.error(error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -73,11 +121,42 @@ export default function Home() {
                 <Text>{listing.description}</Text>
                 <Text>Owner: {listing.owner}</Text>
                 <Text>Contact: {listing.contact}</Text>
+                <Button title="Chat" onPress={() => console.log('Contact Owner')} />
               </View>
             </Callout>
           </Marker>
         ))}
       </MapView>
+
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={() => setModalVisible(true)}
+      >
+        <Text style={styles.addButtonText}>+</Text>
+      </TouchableOpacity>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalView}>
+          <TextInput style={styles.input} placeholder="Title" placeholderTextColor="#999" onChangeText={(text) => setNewListing({...newListing, title: text})} />
+          <TextInput style={styles.input} placeholder="Address" placeholderTextColor="#999" onChangeText={(text) => setNewListing({...newListing, description: text})} />
+          <TextInput style={styles.input} placeholder="Image URL" placeholderTextColor="#999" onChangeText={(text) => setNewListing({...newListing, imageUrl: text})} />
+          <TextInput style={styles.input} placeholder="Owner" placeholderTextColor="#999" onChangeText={(text) => setNewListing({...newListing, owner: text})} />
+          <TextInput style={styles.input} placeholder="Email" placeholderTextColor="#999" onChangeText={(text) => setNewListing({...newListing, contact: text})} />
+          <TextInput style={styles.input} placeholder="Rent" placeholderTextColor="#999" onChangeText={(text) => setNewListing({...newListing, rent: text})} />
+          <TextInput style={styles.input} placeholder="Cleanliness Habits" placeholderTextColor="#999" onChangeText={(text) => setNewListing({...newListing, CleanlinessHabits: text})} />
+          <TextInput style={styles.input} placeholder="Noise Tolerance" placeholderTextColor="#999" onChangeText={(text) => setNewListing({...newListing, NoiseTolerance: text})} />
+          <TextInput style={styles.input} placeholder="Social Prefernces" placeholderTextColor="#999" onChangeText={(text) => setNewListing({...newListing, SocialPrefernces: text})} />
+          <TextInput style={styles.input} placeholder="Daily Routines" placeholderTextColor="#999" onChangeText={(text) => setNewListing({...newListing, DailyRoutines: text})} />
+          <TextInput style={styles.input} placeholder="Description of Current Occupants" placeholderTextColor="#999" onChangeText={(text) => setNewListing({...newListing, DescriptionofCurrentOccupants: text})} />
+          <Button title="Add Listing" onPress={handleAddListing} />
+          <Button title="Cancel" onPress={() => setModalVisible(false)} />
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -90,15 +169,52 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   calloutView: {
-    width: 200, // Set width and height as needed
-    height: 200,
+    width: 200,
+    height: 220,
   },
   roomImage: {
     width: '100%',
-    height: 100, // Set image height
+    height: 100,
     resizeMode: 'cover'
   },
   title: {
     fontWeight: 'bold',
+  },
+  addButton: {
+    position: 'absolute',
+    right: 20,
+    top: 70,
+    backgroundColor: 'blue',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addButtonText: {
+    color: 'white',
+    fontSize: 30,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+    width: 0,
+    height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  input: {
+    width: 250,
+    height: 50,
+    marginBottom: 12,
+    borderWidth: 1,
+    padding: 10,
   }
 });
