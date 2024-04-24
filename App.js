@@ -13,12 +13,14 @@ import NotificationsScreen from './screens/NotificationsScreen';
 import ChangePasswordScreen from './screens/ChangePassword';
 import ChangeCityPage from './screens/citychange';
 import SettingsScreen from './screens/SettingsScreen';
+import UserPreference from './screens/UserPreference';
 import Chats from './screens/Chats';
 import ChannelsList from './screens/ChannelsList';
 import Onboarding from './screens/Onboarding';
 import { Colors } from './constants/styles';
 import AuthContextProvider, { AuthContext } from './store/auth-context';
 import IconButton from './components/ui/IconButton';
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -38,6 +40,7 @@ function SettingsStack() {
       <Stack.Screen name="Settings" component={SettingsScreen} options={{ headerShown: true, headerTitle: 'Settings' }} />
       <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} options={{ headerTitle: 'Change Password' }} />
       <Stack.Screen name="ChangeCity" component={ChangeCityPage} options={{ headerTitle: 'Change City' }} />
+      <Stack.Screen name="UserPreference" component={UserPreference} options={{ headerTitle: 'UserPreference' }} />
     </Stack.Navigator>
   );
 }

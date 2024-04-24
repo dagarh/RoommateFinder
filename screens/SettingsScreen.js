@@ -30,7 +30,7 @@ function SettingsScreen({ navigation }) {
 
       <TouchableOpacity
         style={styles.box}
-        onPress={() => navigateToScreen("SavedPosts")}
+        onPress={() => navigateToScreen("UserPreference")}
       >
         <Text style={styles.Set}>User Preference</Text>
         <Ionicons name="arrow-forward" size={22} color="black" />
