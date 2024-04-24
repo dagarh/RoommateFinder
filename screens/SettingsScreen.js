@@ -38,7 +38,7 @@ function SettingsScreen({ navigation }) {
 
       <TouchableOpacity
         style={styles.box}
-        onPress={() => navigateToScreen("likes")}
+        onPress={() => navigateToScreen("ChangeCity")}
       >
         <Text style={styles.Set}>Change City</Text>
         <Ionicons name="arrow-forward" size={22} color="black" />

@@ -10,6 +10,8 @@ import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import Home from './screens/Home';
 import NotificationsScreen from './screens/NotificationsScreen';
+import ChangePasswordScreen from './screens/ChangePassword';
+import ChangeCityPage from './screens/citychange';
 import SettingsScreen from './screens/SettingsScreen';
 import Chats from './screens/Chats';
 import ChannelsList from './screens/ChannelsList';
@@ -29,6 +31,17 @@ function AuthStack() {
     </Stack.Navigator>
   );
 }
+
+function SettingsStack() {
+  return (
+    <Stack.Navigator initialRouteName='Settings'>
+      <Stack.Screen name="Settings" component={SettingsScreen} options={{ headerShown: true, headerTitle: 'Settings' }} />
+      <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} options={{ headerTitle: 'Change Password' }} />
+      <Stack.Screen name="ChangeCity" component={ChangeCityPage} options={{ headerTitle: 'Change City' }} />
+    </Stack.Navigator>
+  );
+}
+
 
 function MainTabNavigator() {
   return (
@@ -75,7 +88,7 @@ function BottomNavigation(){
           tabBarIcon : ({color}) => <TabBarIcon name="settings" color={color}/>,
           tabBarLabel:'Settings'
         }}
-        name="Settings" component={SettingsScreen} />
+        name="Settings" component={SettingsStack} />
     </Tab.Navigator>
   )
 }
