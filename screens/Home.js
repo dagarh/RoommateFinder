@@ -14,45 +14,166 @@ export default function Home({ navigation } ) {
   const listings = [
     {
       id: 1,
-      title: "Room near Central Park",
-      latitude: 40.748817,
-      longitude: -73.985428,
-      description: "Spacious room with a great view of the city.",
+      title: "Modern Loft in SoHo",
+      latitude: 40.7233,
+      longitude: -74.0030,
+      description: "Stylish loft in a vibrant neighborhood.",
       imageUrl: 'https://example.com/room1.jpg',
-      owner: "John Doe",
-      contact: "john@example.com"
+      owner: "Ella Fitzgerald",
+      contact: "ella@example.com",
+      rent: '2500',
+      CleanlinessHabits: 'Very Clean',
+      NoiseTolerance: 'Moderate',
+      SocialPreferences: 'Social',
+      DailyRoutines: 'Early Bird',
+      DescriptionofCurrentOccupants: 'Three artists in their late 20s',
     },
     {
       id: 2,
-      title: "Room in Downtown JC",
-      latitude: 40.7178,
-      longitude: -74.0431,
-      description: "Modern room with amenities nearby.",
+      title: "Chic Studio in Williamsburg",
+      latitude: 40.7081,
+      longitude: -73.9571,
+      description: "Chic studio perfect for creative individuals.",
       imageUrl: 'https://example.com/room2.jpg',
-      owner: "Jane Smith",
-      contact: "jane@example.com"
+      owner: "Miles Davis",
+      contact: "miles@example.com",
+      rent: '1800',
+      CleanlinessHabits: 'Moderate',
+      NoiseTolerance: 'Low',
+      SocialPreferences: 'Introvert',
+      DailyRoutines: 'Mixed',
+      DescriptionofCurrentOccupants: 'A young musician',
     },
     {
       id: 3,
-      title: "Cozy Hoboken Room",
-      latitude: 40.7434,
-      longitude: -74.0324,
-      description: "Comfortable and affordable.",
+      title: "Cozy Apartment in East Village",
+      latitude: 40.7265,
+      longitude: -73.9815,
+      description: "Cozy and affordable apartment in a cultural hotspot.",
       imageUrl: 'https://example.com/room3.jpg',
-      owner: "Alice Johnson",
-      contact: "alice@example.com"
+      owner: "Amy Winehouse",
+      contact: "amy@example.com",
+      rent: '2200',
+      CleanlinessHabits: 'High',
+      NoiseTolerance: 'High',
+      SocialPreferences: 'Extrovert',
+      DailyRoutines: 'Night Owl',
+      DescriptionofCurrentOccupants: 'Two graduate students',
     },
-    // Additional room listings
-    { id: 4, title: "Luxury Studio in Manhattan", latitude: 40.758896, longitude: -73.985130, description: "High-end studio in the heart of Manhattan.", imageUrl: 'https://example.com/room4.jpg', owner: "Charlie Brown", contact: "charlie@example.com" },
-    { id: 5, title: "Quiet Retreat in Queens", latitude: 40.704279, longitude: -73.809478, description: "Peaceful spot with garden access.", imageUrl: 'https://example.com/room5.jpg', owner: "Lucy Smith", contact: "lucy@example.com" },
-    { id: 6, title: "Budget Room near NYU", latitude: 40.729515, longitude: -73.996460, description: "Affordable room ideal for students.", imageUrl: 'https://example.com/room6.jpg', owner: "Linus Van Pelt", contact: "linus@example.com" },
-    { id: 7, title: "Shared Apartment in Brooklyn", latitude: 40.650002, longitude: -73.949997, description: "Cozy shared space, great for newcomers.", imageUrl: 'https://example.com/room7.jpg', owner: "Sally Brown", contact: "sally@example.com" },
-    { id: 8, title: "Private Room in Staten Island", latitude: 40.579021, longitude: -74.151535, description: "Private room with excellent amenities.", imageUrl: 'https://example.com/room8.jpg', owner: "Rerun Van Pelt", contact: "rerun@example.com" },
-    { id: 9, title: "Convenient Loft in Midtown", latitude: 40.754932, longitude: -73.984016, description: "Perfect location with modern facilities.", imageUrl: 'https://example.com/room9.jpg', owner: "Peppermint Patty", contact: "patty@example.com" },
-    { id: 10, title: "Spacious Condo in the Bronx", latitude: 40.837048, longitude: -73.865433, description: "Spacious and sunny condo with great views.", imageUrl: 'https://example.com/room10.jpg', owner: "Marcie Jones", contact: "marcie@example.com" },
-    { id: 11, title: "Artistic Flat in Harlem", latitude: 40.811550, longitude: -73.946477, description: "Creative space ideal for artists.", imageUrl: 'https://example.com/room11.jpg', owner: "Franklin Armstrong", contact: "franklin@example.com" },
-    
+    {
+      id: 4,
+      title: "Luxury Condo in Tribeca",
+      latitude: 40.7163,
+      longitude: -74.0086,
+      description: "High-end living with stunning city views.",
+      imageUrl: 'https://example.com/room4.jpg',
+      owner: "John Coltrane",
+      contact: "john@example.com",
+      rent: '4500',
+      CleanlinessHabits: 'Very Clean',
+      NoiseTolerance: 'Very Low',
+      SocialPreferences: 'Social',
+      DailyRoutines: 'Early Bird',
+      DescriptionofCurrentOccupants: 'A professional couple',
+    },
+    {
+      id: 5,
+      title: "Shared Space in Midtown",
+      latitude: 40.7549,
+      longitude: -73.9840,
+      description: "Affordable and lively shared space.",
+      imageUrl: 'https://example.com/room5.jpg',
+      owner: "Billie Holiday",
+      contact: "billie@example.com",
+      rent: '1300',
+      CleanlinessHabits: 'Moderate',
+      NoiseTolerance: 'Moderate',
+      SocialPreferences: 'Very Social',
+      DailyRoutines: 'Mixed',
+      DescriptionofCurrentOccupants: 'Four college students',
+    },
+    {
+      id: 6,
+      title: "Sunny Flat in Harlem",
+      latitude: 40.8116,
+      longitude: -73.9465,
+      description: "Bright and sunny flat with spacious layout.",
+      imageUrl: 'https://example.com/room6.jpg',
+      owner: "Thelonious Monk",
+      contact: "thelonious@example.com",
+      rent: '1900',
+      CleanlinessHabits: 'High',
+      NoiseTolerance: 'Low',
+      SocialPreferences: 'Introvert',
+      DailyRoutines: 'Early Bird',
+      DescriptionofCurrentOccupants: 'A young professional',
+    },
+    {
+      id: 7,
+      title: "Artist’s Studio in Bushwick",
+      latitude: 40.6943,
+      longitude: -73.9213,
+      description: "Perfect space for artists and creatives.",
+      imageUrl: 'https://example.com/room7.jpg',
+      owner: "Charlie Parker",
+      contact: "charlie@example.com",
+      rent: '1600',
+      CleanlinessHabits: 'Moderate',
+      NoiseTolerance: 'High',
+      SocialPreferences: 'Very Social',
+      DailyRoutines: 'Night Owl',
+      DescriptionofCurrentOccupants: 'Two visual artists',
+    },
+    {
+      id: 8,
+      title: "Quiet Retreat in Queens",
+      latitude: 40.7282,
+      longitude: -73.7949,
+      description: "Quiet retreat away from city noise.",
+      imageUrl: 'https://example.com/room8.jpg',
+      owner: "Nina Simone",
+      contact: "nina@example.com",
+      rent: '1400',
+      CleanlinessHabits: 'Very Clean',
+      NoiseTolerance: 'Very Low',
+      SocialPreferences: 'Introvert',
+      DailyRoutines: 'Early Bird',
+      DescriptionofCurrentOccupants: 'An elderly couple',
+    },
+    {
+      id: 9,
+      title: "Penthouse in Financial District",
+      latitude: 40.7074,
+      longitude: -74.0113,
+      description: "Luxurious penthouse with breathtaking views.",
+      imageUrl: 'https://example.com/room9.jpg',
+      owner: "Louis Armstrong",
+      contact: "louis@example.com",
+      rent: '5000',
+      CleanlinessHabits: 'High',
+      NoiseTolerance: 'Low',
+      SocialPreferences: 'Social',
+      DailyRoutines: 'Mixed',
+      DescriptionofCurrentOccupants: 'A business executive',
+    },
+    {
+      id: 10,
+      title: "Shared Apartment in Brooklyn",
+      latitude: 40.6782,
+      longitude: -73.9442,
+      description: "Friendly shared apartment in a hip area.",
+      imageUrl: 'https://example.com/room10.jpg',
+      owner: "Duke Ellington",
+      contact: "duke@example.com",
+      rent: '1700',
+      CleanlinessHabits: 'Moderate',
+      NoiseTolerance: 'Moderate',
+      SocialPreferences: 'Very Social',
+      DailyRoutines: 'Night Owl',
+      DescriptionofCurrentOccupants: 'Three young professionals',
+    }
   ];
+  
   
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -115,15 +236,22 @@ export default function Home({ navigation } ) {
             title={listing.title}
           >
             <Callout>
-              <View style={styles.calloutView}>
-                <Image source={{ uri: listing.imageUrl }} style={styles.roomImage} />
-                <Text style={styles.title}>{listing.title}</Text>
-                <Text>{listing.description}</Text>
-                <Text>Owner: {listing.owner}</Text>
-                <Text>Contact: {listing.contact}</Text>
-                <Button title="Chat" onPress={() => navigation.navigate('Chats')} />
-      </View>
-            </Callout>
+  <View style={styles.calloutView}>
+    <Image source={{ uri: listing.imageUrl }} style={styles.roomImage} />
+    <Text style={styles.title}>{listing.title}</Text>
+    <Text>{listing.description}</Text>
+    <Text>Owner: {listing.owner}</Text>
+    <Text>Contact: {listing.contact}</Text>
+    <Text>Rent: ${listing.rent}</Text>
+    <Text>Cleanliness Habits: {listing.CleanlinessHabits}</Text>
+    <Text>Noise Tolerance: {listing.NoiseTolerance}</Text>
+    <Text>Social Preferences: {listing.SocialPreferences}</Text>
+    <Text>Daily Routines: {listing.DailyRoutines}</Text>
+    <Text>Description of Current Occupants: {listing.DescriptionofCurrentOccupants}</Text>
+    <Button title="Chat" onPress={() => navigation.navigate('Chats')} />
+  </View>
+</Callout>
+
           </Marker>
         ))}
       </MapView>
@@ -169,8 +297,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   calloutView: {
-    width: 200,
-    height: 220,
+    width: 300,
+    height: 350,
   },
   roomImage: {
     width: '100%',
