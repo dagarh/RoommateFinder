@@ -5,6 +5,7 @@ package com.ssw695.app.userregistrationandpreferences.constant;
  *
  */
 public class UserRegistrationAndPreferencesConstant implements UrlConstants {	
-	public static final String SUCCESS = "success";
 	public static final String FAILURE = "failure";
+	public static final String SUCCESS = "success";
+	
 }
