@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, Button, Modal, TextInput, TouchableOpacity, Alert } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 
-export default function Home() {
+export default function Home({ navigation } ) {
   const initialRegion = {
     latitude: 40.730610,
     longitude: -73.935242,
@@ -121,8 +121,8 @@ export default function Home() {
                 <Text>{listing.description}</Text>
                 <Text>Owner: {listing.owner}</Text>
                 <Text>Contact: {listing.contact}</Text>
-                <Button title="Chat" onPress={() => console.log('Contact Owner')} />
-              </View>
+                <Button title="Chat" onPress={() => navigation.navigate('Chats')} />
+      </View>
             </Callout>
           </Marker>
         ))}
