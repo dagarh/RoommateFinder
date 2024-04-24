@@ -72,7 +72,7 @@ export default function Home({ navigation } ) {
 
   const handleAddListing = async () => {
     try {
-      const response = await fetch('https://d81e-108-5-218-27.ngrok-free.app/roommateFinder/feeds/viewAllfeeds', {
+      const response = await fetch('https://0702-108-5-218-27.ngrok-free.app/roommateFinder/feeds', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
