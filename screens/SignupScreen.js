@@ -47,7 +47,7 @@ function SignUpScreen() {
   }
 
   async function postUserProfile(email, name) {
-    const url = `https://3584-100-8-18-81.ngrok-free.app/user-registration-and-preferences/api/v1/profile/users/${email}`;
+    const url = `https://8462-100-8-18-81.ngrok-free.app/user-registration-and-preferences/api/v1/profile/users/${email}`;
     try {
       await fetch(url, {
         method: 'POST',
@@ -62,7 +62,7 @@ function SignUpScreen() {
   }
   
   async function postUserPreferences(email, preferences) {
-    const url = `https://3584-100-8-18-81.ngrok-free.app/user-registration-and-preferences/api/v1/preference/users/${email}`;
+    const url = `https://8462-100-8-18-81.ngrok-free.app/user-registration-and-preferences/api/v1/preference/users/${email}`;
 
     try {
       const response = await fetch(url, {
